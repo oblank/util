@@ -1,1 +1,3 @@
 # util
+
+*util for golang*
