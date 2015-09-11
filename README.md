@@ -1,3 +1,3 @@
 # util
 
-*util for golang*
+util tools for golang
