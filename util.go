@@ -69,7 +69,7 @@ func RangeNumber(start int, end int) []int {
 	return ret
 }
 
-func RangeString(sort_slice []string, start string, end string) []string {
+func RangeStringWithSort(sort_slice []string, start string, end string) []string {
 	sort.Strings(sort_slice)
 	startIndex := sort.SearchStrings(sort_slice, start)
 	endIndex := sort.SearchStrings(sort_slice, end)
@@ -96,7 +96,7 @@ func Rangeabc(start string, end string) []string {
 	end = strings.ToLower(end)
 	alphabets := []string{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"}
 
-	return RangeString(alphabets, start, end)
+	return RangeStringWithSort(alphabets, start, end)
 }
 
 func RangeABC(start string, end string) []string {
@@ -107,5 +107,5 @@ func RangeABC(start string, end string) []string {
 	end = strings.ToUpper(end)
 	alphabets := []string{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
 
-	return RangeString(alphabets, start, end)
+	return RangeStringWithSort(alphabets, start, end)
 }
