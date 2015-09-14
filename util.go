@@ -2,6 +2,7 @@ package util
 
 import (
 	"crypto/md5"
+	"encoding/base64"
 	"encoding/hex"
 	"regexp"
 	"sort"
@@ -142,4 +143,30 @@ func MbSubstr(source string, pos int, length int) string {
 func MbStrlen(source string) int {
 	runes := []rune(source)
 	return len(runes)
+}
+
+func Base64Encode(data string) string {
+	return Base64EncodeBytes([]byte(data))
+}
+
+func Base64EncodeBytes(data []byte) string {
+	return base64.StdEncoding.EncodeToString(data)
+}
+
+func Base64Decode(data string) string {
+	ret, _ := base64.StdEncoding.DecodeString(data)
+	return string(ret)
+}
+
+func Base64Encode4Url(data string) string {
+	return Base64Encode4UrlBytes([]byte(data))
+}
+
+func Base64Encode4UrlBytes(data []byte) string {
+	return base64.URLEncoding.EncodeToString(data)
+}
+
+func Base64Decode4Url(data string) string {
+	ret, _ := base64.URLEncoding.DecodeString(data)
+	return string(ret)
 }
