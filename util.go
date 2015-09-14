@@ -110,7 +110,7 @@ func RangeABC(start string, end string) []string {
 	return RangeStringWithSort(alphabets, start, end)
 }
 
-func Ord(char string) int {
+func OrdStr(char string) int {
 	if char == "" || len(char) > 1 {
 		panic("is not corret string")
 	}
@@ -118,6 +118,28 @@ func Ord(char string) int {
 	return int(val[0])
 }
 
-func char(ascii int) string {
+func Ord(char byte) int {
+	return int(char)
+}
+
+func Char(ascii int) string {
 	return string(rune(ascii))
+}
+
+func ByteToString(ascii byte) string {
+	return string(rune(ascii))
+}
+
+func MbSubstr(source string, pos int, length int) string {
+	runes := []rune(source)
+	l := pos + length
+	if l > len(runes) {
+		l = len(runes)
+	}
+	return string(runes[pos:l])
+}
+
+func MbStrlen(source string) int {
+	runes := []rune(source)
+	return len(runes)
 }
