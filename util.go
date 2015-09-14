@@ -109,3 +109,15 @@ func RangeABC(start string, end string) []string {
 
 	return RangeStringWithSort(alphabets, start, end)
 }
+
+func Ord(char string) int {
+	if char == "" || len(char) > 1 {
+		panic("is not corret string")
+	}
+	val := []byte(char)
+	return int(val[0])
+}
+
+func char(ascii int) string {
+	return string(rune(ascii))
+}
