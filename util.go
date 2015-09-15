@@ -1,8 +1,10 @@
 package util
 
 import (
+	"bytes"
 	"crypto/md5"
 	"encoding/base64"
+	"encoding/binary"
 	"encoding/hex"
 	"regexp"
 	"sort"
@@ -29,8 +31,8 @@ func Md5Byte(src []byte) string {
 }
 
 //time
-func UnixTimestamp() int64 {
-	return time.Now().Unix()
+func UnixTimestamp() int {
+	return int(time.Now().Unix())
 }
 
 func UnixTimestampStr() string {
@@ -43,9 +45,9 @@ func TimestampToDate(timestamp int64) string {
 	return tm.Format("2006-01-02 03:04:05 PM")
 }
 
-func DateToTimestamp(date string, dateformat string) int64 {
+func DateToTimestamp(date string, dateformat string) int {
 	tm, _ := time.Parse(dateformat, date)
-	return tm.Unix()
+	return int(tm.Unix())
 }
 
 //range like php range
@@ -124,11 +126,23 @@ func Ord(char byte) int {
 }
 
 func Char(ascii int) string {
-	return string(rune(ascii))
+	return string(IntToBytes(ascii))
 }
 
 func ByteToString(ascii byte) string {
-	return string(rune(ascii))
+	//ascii = bytes.Trim([]byte{ascii}, "\x00") //trim NUL character
+	return string(ascii)
+}
+
+func IntToBytes(i int) []byte {
+	var buf = make([]byte, 2)
+	binary.LittleEndian.PutUint16(buf, uint16(i))
+	buf = bytes.Trim(buf, "\x00") //trim NUL character
+	return buf
+}
+
+func BytesToInt64(buf []byte) int64 {
+	return int64(binary.LittleEndian.Uint64(buf))
 }
 
 func MbSubstr(source string, pos int, length int) string {
