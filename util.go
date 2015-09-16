@@ -11,6 +11,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	//	"io"
+	//	"fmt"
 )
 
 // The IsNum judges string is number or not.
@@ -21,8 +23,12 @@ func StringIsNumber(a string) bool {
 
 //date
 func Md5String(str string) string {
-	bytes := md5.Sum([]byte(str))
-	return hex.EncodeToString(bytes[:])
+	hasher := md5.New()
+	hasher.Write([]byte(str))
+	return hex.EncodeToString(hasher.Sum(nil))
+
+	//	bytes := md5.Sum([]byte(str))
+	//	return hex.EncodeToString(bytes[:])
 }
 
 func Md5Byte(src []byte) string {
@@ -164,11 +170,11 @@ func Base64Encode(data string) string {
 }
 
 func Base64EncodeBytes(data []byte) string {
-	return base64.RawStdEncoding.EncodeToString(data)
+	return base64.StdEncoding.EncodeToString(data)
 }
 
 func Base64Decode(data string) string {
-	ret, _ := base64.RawStdEncoding.DecodeString(data)
+	ret, _ := base64.StdEncoding.DecodeString(data)
 	return string(ret)
 }
 
