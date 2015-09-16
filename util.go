@@ -164,11 +164,11 @@ func Base64Encode(data string) string {
 }
 
 func Base64EncodeBytes(data []byte) string {
-	return base64.StdEncoding.EncodeToString(data)
+	return base64.RawStdEncoding.EncodeToString(data)
 }
 
 func Base64Decode(data string) string {
-	ret, _ := base64.StdEncoding.DecodeString(data)
+	ret, _ := base64.RawStdEncoding.DecodeString(data)
 	return string(ret)
 }
 
@@ -177,10 +177,10 @@ func Base64Encode4Url(data string) string {
 }
 
 func Base64Encode4UrlBytes(data []byte) string {
-	return base64.URLEncoding.EncodeToString(data)
+	return base64.RawURLEncoding.EncodeToString(data)
 }
 
 func Base64Decode4Url(data string) string {
-	ret, _ := base64.URLEncoding.DecodeString(data)
+	ret, _ := base64.RawURLEncoding.DecodeString(data)
 	return string(ret)
 }
