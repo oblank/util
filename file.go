@@ -1,6 +1,7 @@
 package util
 
 import (
+	"io/ioutil"
 	"os"
 	"regexp"
 	"strings"
@@ -48,4 +49,12 @@ func IsFileExists(path string) bool {
 	} else {
 		return !fi.IsDir()
 	}
+}
+
+func ReadFile(path string) string {
+	file, err := ioutil.ReadFile(path)
+	if err != nil {
+		return ""
+	}
+	return string(file)
 }
