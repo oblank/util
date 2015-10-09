@@ -3,15 +3,16 @@ package util
 import (
 	"bytes"
 	"crypto/md5"
+	"crypto/rand"
 	"encoding/base64"
 	"encoding/binary"
 	"encoding/hex"
+	"io"
 	"regexp"
 	"sort"
 	"strconv"
 	"strings"
 	"time"
-	//	"io"
 	//	"fmt"
 )
 
@@ -117,6 +118,15 @@ func RangeABC(start string, end string) []string {
 	alphabets := []string{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
 
 	return RangeStringWithSort(alphabets, start, end)
+}
+
+func RandomString() string {
+	id := make([]byte, 32)
+
+	if _, err := io.ReadFull(rand.Reader, id); err != nil {
+		panic(err) // This shouldn't happen
+	}
+	return hex.EncodeToString(id)
 }
 
 func OrdStr(char string) int {
